@@ -1,0 +1,54 @@
+﻿@using ITUniversity.Tasks.Entities
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    ViewData["title"] = "Cписок задач";
+}
+@model ICollection<TaskBase>
+
+@Html.ActionLink("Create", "Create", "Task", null, new { @class = "btn btn-dark"})
+
+
+<div class="card">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Subject
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        @foreach (var task in Model)
+        {
+
+            <tr>
+                <td>
+                    @task.Id
+                </td>
+                <td>
+                    @task.Subject
+                </td>
+                <td>
+                    @task.Description
+                </td>
+                <td>
+                    @Html.ActionLink("Update", "Create", "Task", null, new { @class = "btn btn-link" })|
+                    @Html.ActionLink("Delete", "Create", "Task", null, new { @class = "btn btn-link" })
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>

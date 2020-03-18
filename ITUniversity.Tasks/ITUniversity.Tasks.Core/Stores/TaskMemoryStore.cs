@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+
 using ITUniversity.Tasks.Entities;
 using ITUniversity.Tasks.Helpers;
 
@@ -36,6 +37,12 @@ namespace ITUniversity.Tasks.Stores
             return task;
         }
 
+        
+        /// <inheritdoc/>
+        public ICollection<TaskBase> GetAll()
+        {
+            return tasks.Select(task => task.Copy()).ToList();
+        }
         public TaskBase Update(TaskBase entity)
         {
             var taskToUpdate = tasks.FirstOrDefault(item => item.Id == entity.Id);

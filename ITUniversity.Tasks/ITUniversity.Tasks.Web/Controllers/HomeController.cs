@@ -27,7 +27,7 @@ namespace ITUniversity.Tasks.Web.Controllers
             var c = taskStore.Get(1);
             Entities.TaskBase tempTB = new Entities.TaskBase { Id=1, Subject = "Hello There", Description = "Hello There", Status = Enums.TasksStatus.Done};
             var d = taskStore.Update(tempTB);
-            taskStore.Delete(1);
+            //taskStore.Delete(1);
             return View();
         }
 
