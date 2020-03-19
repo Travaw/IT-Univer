@@ -27,6 +27,14 @@ namespace ITUniversity.Tasks.Managers
         /// 
         /// </summary>
         /// <returns></returns>
+        TaskBase Get(long id);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         ICollection<TaskBase> GetAll();
+
+        void Delete(long id);
     }
 }

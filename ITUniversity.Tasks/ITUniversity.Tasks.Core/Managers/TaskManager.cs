@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using ITUniversity.Tasks.Entities;
 using ITUniversity.Tasks.Stores;
@@ -18,6 +19,8 @@ namespace ITUniversity.Tasks.Managers
         ///<inheritdoc/>
         public TaskBase Create(TaskBase task) 
         {
+            task.CreationDate = DateTime.Now;
+            task.Status = Enums.TasksStatus.ToDo;
             return taskStore.Save(task);
         }
 
@@ -28,9 +31,20 @@ namespace ITUniversity.Tasks.Managers
         }
 
         /// <inheritdoc/>
+        public TaskBase Get(long id)
+        {
+            return taskStore.Get(id);
+        }
+
+        /// <inheritdoc/>
         public ICollection<TaskBase> GetAll()
         {
             return taskStore.GetAll();
+        }
+
+        public void Delete(long id)
+        {
+            taskStore.Delete(id);
         }
     }
 }

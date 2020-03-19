@@ -5,50 +5,31 @@
 
 @{
     ViewData["title"] = "Cписок задач";
+
 }
+
 @model ICollection<TaskBase>
 
-@Html.ActionLink("Create", "Create", "Task", null, new { @class = "btn btn-dark"})
 
 
-<div class="card">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    #
-                </th>
-                <th>
-                    Subject
-                </th>
-                <th>
-                    Description
-                </th>
-                <th>
-
-                </th>
-            </tr>
-        </thead>
-        @foreach (var task in Model)
-        {
-
-            <tr>
-                <td>
-                    @task.Id
-                </td>
-                <td>
-                    @task.Subject
-                </td>
-                <td>
-                    @task.Description
-                </td>
-                <td>
-                    @Html.ActionLink("Update", "Create", "Task", null, new { @class = "btn btn-link" })|
-                    @Html.ActionLink("Delete", "Create", "Task", null, new { @class = "btn btn-link" })
-                </td>
-            </tr>
-        }
-    </table>
-
+<div class="card">    
+    <div class="card-body">
+        <table class="table table-borderless">
+            @foreach (var task in Model)
+            {
+                <tr>
+                    <td style="padding-left: 0px; padding-right: 0px;">
+                        @await Html.PartialAsync("Task/RowDetails", task)
+                    </td>
+                </tr>
+            }
+        </table>
+        @Html.ActionLink("Добавить задачу", "Create", "Task", null, new { @class = "btn btn-primary" })
+    </div>
 </div>
+
+@section scripts
+{
+    <script src="~/view-resources/task/scripts.js"></script>
+}

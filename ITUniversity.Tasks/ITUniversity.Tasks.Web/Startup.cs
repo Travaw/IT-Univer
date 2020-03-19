@@ -1,3 +1,4 @@
+using AutoMapper;
 using ITUniversity.Tasks.Stores;
 
 using Microsoft.AspNetCore.Builder;
@@ -22,6 +23,7 @@ namespace ITUniversity.Tasks.Web
         {
             services.AddControllersWithViews();
             services.AddTaskCoreServices();
+            services.AddAutoMapper(typeof(Startup).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

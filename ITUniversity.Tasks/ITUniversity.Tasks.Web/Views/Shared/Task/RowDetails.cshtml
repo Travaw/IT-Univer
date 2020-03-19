@@ -1,0 +1,39 @@
+﻿@using ITUniversity.Tasks.Entities
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model TaskBase
+@{
+    Func<TaskBase, string> calculateCardTitleStyle = task =>
+   {
+       return $"display: flex;{(string.IsNullOrWhiteSpace(task.Description)? "margin-bottom: px":"")}";
+   };
+
+    Func<TaskBase, string> calculateBadgeClass = task =>
+    {
+        return $"badge badge-{(task.Status == ITUniversity.Tasks.Enums.TasksStatus.ToDo ? "primary" : "success")}";
+    };
+}
+
+    <div class="card" id="task_@Model.Id">
+        <div class="card-body">
+            <div style="display: flex">
+                <h5 class="card-title" style="@calculateCardTitleStyle(Model)">
+                    @Html.ActionLink(Model.Subject, "Details", "Task")
+                    <span class="@calculateBadgeClass(Model)" style="margin-left: 5px;">
+                        @Model.Status
+                    </span>
+                </h5>
+                <div style="width: 100%;">
+                    <span class="material-icons" style="float: right; cursor: pointer; color: red;" onclick="task.delete('@Model.Id', this)">
+                        delete
+                    </span>
+                    <span class="material-icons" style="float: right; cursor: pointer;" onclick="alert('edit');">
+                        edit
+                    </span>
+                </div>
+            </div>
+            @Model.Description
+        </div>
+    </div>
