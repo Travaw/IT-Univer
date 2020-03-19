@@ -44,7 +44,6 @@ namespace ITUniversity.Tasks.Web.Controllers
             else
             {
                 var entity = mapper.Map<TaskBase>(task);
-                //taskManager.Create(taskBase);
                 taskManager.Create(entity);
                 return RedirectToAction("Index");
             } 
@@ -62,6 +61,23 @@ namespace ITUniversity.Tasks.Web.Controllers
         {
             var task = taskManager.Get(id);
             return View(task);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(long id)
+        {
+            var task = mapper.Map<TaskEditModel>(taskManager.Get(id));
+            return View(task);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(TaskEditModel task)
+        {
+            var entity = taskManager.Get(task.Id);
+            entity.Subject = task.Subject;
+            entity.Description = task.Description;
+            taskManager.Update(entity);
+            return RedirectToAction("Index");
         }
     }
 }

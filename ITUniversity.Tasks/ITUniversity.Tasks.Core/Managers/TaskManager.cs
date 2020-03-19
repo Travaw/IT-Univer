@@ -42,6 +42,13 @@ namespace ITUniversity.Tasks.Managers
             return taskStore.GetAll();
         }
 
+        /// <inheritdoc/>
+        public TaskBase Update(TaskBase task)
+        {
+            return taskStore.Update(task);
+        }
+
+        /// <inheritdoc/>
         public void Delete(long id)
         {
             taskStore.Delete(id);

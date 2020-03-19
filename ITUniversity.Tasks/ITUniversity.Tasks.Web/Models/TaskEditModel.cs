@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using ITUniversity.Tasks.Enums;
+
+using ITUniversity.Tasks.Entities;
 
 namespace ITUniversity.Tasks.Web.Models
 {
-    public class TaskCreateModel
+    public class TaskEditModel
     {
+        
+        public TaskEditModel()
+        {
 
-        public static TaskCreateModel New
-         {
-            get { return new TaskCreateModel(); }
-         }
+        }
+        
+        public long Id { get; set; }
 
-        [Required(ErrorMessage ="Заполните обязательное поле")]
+        [Required(ErrorMessage = "Заполните обязательное поле")]
         [DisplayName("Тема")]
         public string Subject { get; set; }
 

@@ -24,17 +24,27 @@ namespace ITUniversity.Tasks.Managers
         TaskBase Create(string subject);
 
         /// <summary>
-        /// 
+        /// Поиск задачи
         /// </summary>
         /// <returns></returns>
         TaskBase Get(long id);
 
         /// <summary>
-        /// 
+        /// Вернуть все задачи
         /// </summary>
         /// <returns></returns>
         ICollection<TaskBase> GetAll();
 
+        /// <summary>
+        /// Изменение задачи
+        /// </summary>
+        /// <returns></returns>
+        TaskBase Update(TaskBase task);
+
+        /// <summary>
+        /// Удаление задачи
+        /// </summary>
+        /// <returns></returns>
         void Delete(long id);
     }
 }

@@ -20,7 +20,7 @@
         <div class="card-body">
             <div style="display: flex">
                 <h5 class="card-title" style="@calculateCardTitleStyle(Model)">
-                    @Html.ActionLink(Model.Subject, "Details", "Task")
+                    <a class="" style="float: right; cursor: pointer;" href="Task/Details?id=@Model.Id">@Model.Subject</a>
                     <span class="@calculateBadgeClass(Model)" style="margin-left: 5px;">
                         @Model.Status
                     </span>
@@ -29,9 +29,14 @@
                     <span class="material-icons" style="float: right; cursor: pointer; color: red;" onclick="task.delete('@Model.Id', this)">
                         delete
                     </span>
-                    <span class="material-icons" style="float: right; cursor: pointer;" onclick="alert('edit');">
-                        edit
-                    </span>
+
+                    <a class="material-icons" style="float: right; cursor: pointer;" href="Task/Edit?id=@Model.Id">edit</a>
+                    
+                        @*<span class="material-icons" style="float: right; cursor: pointer;">
+                            edit
+                        </span>*@
+                    
+
                 </div>
             </div>
             @Model.Description
