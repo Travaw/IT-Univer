@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ITUniversity.AspNetCore\ITUniversity.AspNetCore.csproj" />
     <ProjectReference Include="..\ITUniversity.Tasks.Application\ITUniversity.Tasks.Application.csproj" />
+    <ProjectReference Include="..\ITUniversity.Tasks.NHibernate\ITUniversity.Tasks.NHibernate.csproj" />
   </ItemGroup>
 
 

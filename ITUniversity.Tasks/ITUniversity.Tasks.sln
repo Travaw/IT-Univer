@@ -9,11 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITUniversity.Tasks.Core", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zero", "Zero", "{EA84528F-67FD-4071-9408-376093FD4959}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITUniversity", "ITUniversity\ITUniversity.csproj", "{76199E7D-0E46-4EAB-89C1-687E1FABFBB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITUniversity", "ITUniversity\ITUniversity.csproj", "{76199E7D-0E46-4EAB-89C1-687E1FABFBB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITUniversity.AspNetCore", "ITUniversity.AspNetCore\ITUniversity.AspNetCore.csproj", "{5D353B86-4BB4-4B8E-B0F7-1078C52884CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITUniversity.AspNetCore", "ITUniversity.AspNetCore\ITUniversity.AspNetCore.csproj", "{5D353B86-4BB4-4B8E-B0F7-1078C52884CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITUniversity.Tasks.Application", "ITUniversity.Tasks.Application\ITUniversity.Tasks.Application.csproj", "{8DCCC0AE-C688-44DA-A92C-F49D52D9D59B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITUniversity.Tasks.Application", "ITUniversity.Tasks.Application\ITUniversity.Tasks.Application.csproj", "{8DCCC0AE-C688-44DA-A92C-F49D52D9D59B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITUniversity.Tasks.NHibernate", "ITUniversity.Tasks.NHibernate\ITUniversity.Tasks.NHibernate.csproj", "{4047F3E2-D886-40B9-9665-677BEDD7AA2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{8DCCC0AE-C688-44DA-A92C-F49D52D9D59B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DCCC0AE-C688-44DA-A92C-F49D52D9D59B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DCCC0AE-C688-44DA-A92C-F49D52D9D59B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4047F3E2-D886-40B9-9665-677BEDD7AA2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4047F3E2-D886-40B9-9665-677BEDD7AA2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4047F3E2-D886-40B9-9665-677BEDD7AA2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4047F3E2-D886-40B9-9665-677BEDD7AA2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -36,7 +36,8 @@ namespace ITUniversity.Tasks.Web
                 .AddTaskApplicationServices();
             services.AddAutoMapper(typeof(Startup).Assembly);
             services
-                .AddCore();
+                .AddCore()
+                .AddTaskNHibernate(Configuration.GetConnectionString("Default"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
