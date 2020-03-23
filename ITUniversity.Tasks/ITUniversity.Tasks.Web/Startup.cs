@@ -1,4 +1,5 @@
 using AutoMapper;
+using ITUniversity.AspNetCore;
 using ITUniversity.Tasks.Stores;
 
 using Microsoft.AspNetCore.Builder;
@@ -21,9 +22,21 @@ namespace ITUniversity.Tasks.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddTaskCoreServices();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+            {
+                // Use the default property (Pascal) casing
+                //options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+
+                // Configure a custom converter
+                //options.SerializerOptions.Converters.Add(new MyCustomJsonConverter());
+            });
+            services
+                .AddTaskCoreServices()
+                .AddTaskApplicationServices();
             services.AddAutoMapper(typeof(Startup).Assembly);
+            services
+                .AddCore();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

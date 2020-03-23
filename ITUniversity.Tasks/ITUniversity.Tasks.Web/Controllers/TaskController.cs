@@ -74,7 +74,6 @@ namespace ITUniversity.Tasks.Web.Controllers
         public IActionResult Edit(TaskEditModel task)
         {
             var entity = taskManager.Get(task.Id);
-            entity.Subject = task.Subject;
             entity.Description = task.Description;
             taskManager.Update(entity);
             return RedirectToAction("Index");

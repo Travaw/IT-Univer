@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ITUniversity.AspNetCore;
+using ITUniversity.Tasks.Application;
+using ITUniversity.Tasks.Application.Services;
+using ITUniversity.Tasks.Application.Services.Imps;
 using ITUniversity.Tasks.Managers;
 using ITUniversity.Tasks.Stores;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +18,14 @@ namespace ITUniversity.Tasks.Web
         {
             services.AddSingleton<ITaskStore, TaskMemoryStore>();
             services.AddTransient<ITaskManager, TaskManager>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddTaskApplicationServices(this IServiceCollection services)
+        {
+            services.CreateControllersForAppServices(typeof(TaskApplicationModule).Assembly);
+            services.AddTransient<ITaskAppService, TaskAppService>();
 
             return services;
         }

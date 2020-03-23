@@ -15,9 +15,7 @@ namespace ITUniversity.Tasks.Web.Models
         
         public long Id { get; set; }
 
-        [Required(ErrorMessage = "Заполните обязательное поле")]
-        [DisplayName("Тема")]
-        public string Subject { get; set; }
+        
 
         /// <summary>
         /// Описание
