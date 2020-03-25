@@ -46,7 +46,7 @@ namespace ITUniversity.Tasks.NHibernate.EntityMapping
 
             });
 
-            Table("Tasks");
+            Table(TaskBase.TableName);
         }
     }
 

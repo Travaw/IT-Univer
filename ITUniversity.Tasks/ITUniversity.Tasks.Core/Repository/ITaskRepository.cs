@@ -3,10 +3,11 @@ using ITUniversity.Tasks.Entities;
 
 namespace ITUniversity.Tasks.Repositories
 {
-    public interface ITaskRepository : IRepository<TaskBase>
+    /// <summary>
+    /// Репозиторий сущности <see cref="TaskBase"/>
+    /// </summary>
+    public interface ITaskRepository : IRepository<TaskBase, long>
     {
-        //TaskBase Create(TaskBase task);
 
-        //ICollection<TaskBase> GetAll();
     }
 }

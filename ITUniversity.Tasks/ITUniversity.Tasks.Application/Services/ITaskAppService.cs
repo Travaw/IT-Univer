@@ -1,26 +1,17 @@
 ﻿using ITUniversity.Application.Services;
+using ITUniversity.Tasks.Application.Services.Dto;
 
 namespace ITUniversity.Tasks.Application.Services
 {
     public interface ITaskAppService : IApplicationService
     {
-        void Test();
+        TaskDto Create(TaskCreateDto task);
 
-        string GetTest();
+        TaskDto Update(TaskUpdateDto task);
 
-        void TestString(string str);
+        void Delete(long id);
 
-        string GetTestString(string str);
-
-        void Class(Test test);
-
-        Test GetClass(Test test);
+        TaskDto Get(long id);
     }
 
-    public class Test
-    {
-        public string Name { get; set; }
-
-        public long Age { get; set; }
-    }
 }

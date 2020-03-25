@@ -1,19 +1,13 @@
 ﻿using System;
-using ITUniversity.Domain.Entities;
+using System.Collections.Generic;
+using System.Text;
 using ITUniversity.Tasks.Enums;
 
-namespace ITUniversity.Tasks.Entities
+namespace ITUniversity.Tasks.Application.Services.Dto
 {
-    /// <summary>
-    /// Базовый класс задач
-    /// </summary>
-    public class TaskBase : Entity<long>
+    public class TaskDto
     {
-        /// <summary>
-        /// Имя таблицы
-        /// </summary>
-        public const string TableName = "Tasks";
-
+        public virtual long Id { get; set; }
         /// <summary>
         /// Тема
         /// </summary>

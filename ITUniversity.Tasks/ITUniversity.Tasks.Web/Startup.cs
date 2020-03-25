@@ -1,5 +1,6 @@
 using AutoMapper;
 using ITUniversity.AspNetCore;
+using ITUniversity.Tasks.Application;
 using ITUniversity.Tasks.Stores;
 
 using Microsoft.AspNetCore.Builder;
@@ -34,7 +35,7 @@ namespace ITUniversity.Tasks.Web
             services
                 .AddTaskCoreServices()
                 .AddTaskApplicationServices();
-            services.AddAutoMapper(typeof(Startup).Assembly);
+            services.AddAutoMapper(typeof(Startup).Assembly, typeof(TaskApplicationModule).Assembly);
             services
                 .AddCore()
                 .AddTaskNHibernate(Configuration.GetConnectionString("Default"));

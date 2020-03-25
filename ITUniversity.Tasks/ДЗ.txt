@@ -1,0 +1,5 @@
+ using (ITransaction transaction = session.BeginTransaction()
+            { 
+                Session.Какое-то действие(entity);
+                transaction.Commit();
+            }

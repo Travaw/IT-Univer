@@ -7,8 +7,9 @@ namespace ITUniversity.Domain.Repositories
     /// Репозиторий сущности
     /// </summary>
     /// <typeparam name="TEntity">Тип сущности</typeparam>
-    public interface IRepository<TEntity> where TEntity : class
-    {
+    
+    public interface IRepository
+    {/*
         /// <summary>
         /// Сохранить
         /// </summary>
@@ -43,5 +44,6 @@ namespace ITUniversity.Domain.Repositories
         /// <param name="id"></param>
         /// <returns></returns>
         TEntity Get(long id);
+        */
     }
 }
