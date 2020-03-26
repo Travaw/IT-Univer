@@ -24,7 +24,7 @@ namespace ITUniversity.Tasks.Web
         {
             services.AddScoped<ITaskStore, TaskDbStore>();
             services.AddTransient<ITaskManager, TaskManager>();
-
+            services.AddTransient<IUserAppService, UserAppService>();
             return services;
         }
 
@@ -62,6 +62,7 @@ namespace ITUniversity.Tasks.Web
             //services.AddScoped<IMapperSession, NHibernateMapperSession>();
 
             services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

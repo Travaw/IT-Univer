@@ -23,7 +23,7 @@ namespace ITUniversity.Tasks.Application.Services.Imps
             return dto;
         }
 
-        public TaskDto Create(TaskCreateDto task)
+        public TaskDto Add(TaskCreateDto task)
         {
             var entity = mapper.Map<TaskBase>(task);
             taskManager.Create(entity);

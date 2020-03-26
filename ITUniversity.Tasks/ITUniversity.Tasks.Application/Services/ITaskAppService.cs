@@ -5,7 +5,7 @@ namespace ITUniversity.Tasks.Application.Services
 {
     public interface ITaskAppService : IApplicationService
     {
-        TaskDto Create(TaskCreateDto task);
+        TaskDto Add(TaskCreateDto task);
 
         TaskDto Update(TaskUpdateDto task);
 

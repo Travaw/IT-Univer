@@ -57,7 +57,11 @@ namespace ITUniversity.Tasks.NHibernate.Repositories
         /// <inheritdoc/>
         public override TEntity Update(TEntity entity)
         {
-            Session.Update(entity);
+            using (transaction)
+            {
+                Session.Update(entity);
+                transaction.Commit();
+            }
             Session.Flush(); //Не правильно, только для тестов работы приложения
             return entity;
         }
@@ -66,7 +70,11 @@ namespace ITUniversity.Tasks.NHibernate.Repositories
         public override void Delete(TPrimaryKey id)
         {
             var entity = Session.Load<TEntity>(id);
-            Session.Delete(entity);
+            using (transaction)
+            {
+                Session.Delete(entity);
+                transaction.Commit();
+            }
             Session.Flush(); //Не правильно, только для тестов работы приложения
         }
 

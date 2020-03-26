@@ -13,6 +13,8 @@ namespace ITUniversity.Tasks.Application.Services.Dto
             CreateMap<TaskBase, TaskDto>();
             CreateMap<TaskCreateDto, TaskBase>();
             CreateMap<TaskUpdateDto, TaskBase>();
+            CreateMap<CreateUserDto, User>();
+            CreateMap<User, UserDto>();
         }
     }
 }
