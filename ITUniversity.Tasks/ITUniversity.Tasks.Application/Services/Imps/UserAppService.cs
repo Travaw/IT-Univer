@@ -64,11 +64,19 @@ namespace ITUniversity.Tasks.Application.Services.Imps
             return entity.Password == password;
         }
 
-        public void Block(int id)
+        public bool Block(int id)
         {
-            var entity = userRepository.Get(id);
-            entity.IsBlocked = true;
-            userRepository.Update(entity);
+            try
+            {
+                var entity = userRepository.Get(id);
+                entity.IsBlocked = true;
+                userRepository.Update(entity);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

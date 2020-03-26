@@ -42,6 +42,6 @@ namespace ITUniversity.Tasks.Application.Services
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="password">Пароль</param>
-        void Block(int id);
+        bool Block(int id);
     }
 }

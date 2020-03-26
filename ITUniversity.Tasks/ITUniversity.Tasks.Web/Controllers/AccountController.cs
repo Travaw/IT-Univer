@@ -90,7 +90,7 @@ namespace ITUniversity.Tasks.Web.Controllers
             }
             var user = userAppService.Get(model.Login);
             if (user == null)
-            {
+            {                
                 var dto = mapper.Map<CreateUserDto>(model);
                 userAppService.Create(dto);
 
