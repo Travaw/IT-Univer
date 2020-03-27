@@ -1,16 +1,16 @@
-﻿@using ITUniversity.Tasks.Entities
+﻿@using ITUniversity.Tasks.Application.Services.Dto
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-@model TaskBase
+@model TaskDto
 @{
-    Func<TaskBase, string> calculateCardTitleStyle = task =>
+    Func<TaskDto, string> calculateCardTitleStyle = task =>
    {
        return $"display: flex;{(string.IsNullOrWhiteSpace(task.Description)? "margin-bottom: px":"")}";
    };
 
-    Func<TaskBase, string> calculateBadgeClass = task =>
+    Func<TaskDto, string> calculateBadgeClass = task =>
     {
         return $"badge badge-{(task.Status == ITUniversity.Tasks.Enums.TasksStatus.ToDo ? "primary" : "success")}";
     };
