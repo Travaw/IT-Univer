@@ -35,8 +35,9 @@ namespace ITUniversity.Tasks.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var dtos = taskAppService.GetAll();
-            return View(dtos);
+            var incoming = taskAppService.GetMyIncoming();
+            var outgoing = taskAppService.GetMyOutgoing();
+            return View(new TasksModel { Incoming = incoming, Outgoing = outgoing });
         }
 
         /// <summary>

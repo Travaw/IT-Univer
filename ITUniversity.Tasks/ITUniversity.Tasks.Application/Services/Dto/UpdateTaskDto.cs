@@ -17,5 +17,14 @@ namespace ITUniversity.Tasks.Application.Services.Dto
         /// </summary>
         public virtual string Description { get; set; }
 
+        /// <summary>
+        /// Исполнитель
+        /// </summary>
+        public int? Executor
+        {
+            get;
+            set;
+        }
+
     }
 }

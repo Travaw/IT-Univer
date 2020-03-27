@@ -46,6 +46,17 @@ namespace ITUniversity.Tasks.NHibernate.EntityMapping
 
             });
 
+            ManyToOne(property => property.CreationAuthor, mapping =>
+            {
+                mapping.Column("CreationAuthorId");
+                mapping.NotNullable(true);
+            });
+
+            ManyToOne(property => property.Executor, mapping =>
+            {
+                mapping.Column("ExecutorId");
+            });
+
             Table(TaskBase.TableName);
         }
     }

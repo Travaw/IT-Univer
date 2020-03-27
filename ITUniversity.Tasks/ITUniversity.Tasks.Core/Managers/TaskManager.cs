@@ -1,35 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
+using ITUniversity.Tasks.Enums;
+using ITUniversity.Runtime.Session;
 using ITUniversity.Tasks.Entities;
 using ITUniversity.Tasks.Repositories;
-using ITUniversity.Tasks.Stores;
 
-namespace ITUniversity.Tasks.Managers
+namespace ITUniversity.Tasks.Managers.Impls
 {
-    ///<inheritdoc/>
-    public class TaskManager:ITaskManager
+    /// <summary>
+    /// Менеджер сущности <see cref="TaskBase"/>
+    /// </summary>
+    public class TaskManager : ITaskManager
     {
-
-        //private readonly ITaskStore taskStore;
         private readonly ITaskRepository taskRepository;
 
-        public TaskManager(ITaskRepository taskRepository)
+        private readonly IUserRepository userRepository;
+
+        private readonly IAppSession appSession;
+
+        public TaskManager(ITaskRepository taskRepository, IUserRepository userRepository, IAppSession appSession)
         {
+            this.appSession = appSession;
             this.taskRepository = taskRepository;
+            this.userRepository = userRepository;
         }
-        ///<inheritdoc/>
-        public TaskBase Create(TaskBase task) 
+
+        /// <inheritdoc/>
+        public TaskBase Create(TaskBase task)
         {
             task.CreationDate = DateTime.Now;
-            task.Status = Enums.TasksStatus.ToDo;
+            task.Status = TasksStatus.ToDo;
+            task.CreationAuthor = userRepository.FirstOrDefault(user => user.Login == appSession.UserLogin);
+
             return taskRepository.Save(task);
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public TaskBase Create(string subject)
-        {            
-            return new TaskBase();
+        {
+            var task = new TaskBase { Subject = subject };
+            return Create(task);
         }
 
         /// <inheritdoc/>
@@ -42,6 +53,20 @@ namespace ITUniversity.Tasks.Managers
         public ICollection<TaskBase> GetAll()
         {
             return taskRepository.GetAllList();
+        }
+
+        /// <inheritdoc/>
+        public ICollection<TaskBase> GetIncoming(User user)
+        {
+            var tasks = taskRepository.GetAll().Where(task => task.Status == TasksStatus.ToDo && task.Executor == user);
+            return tasks.ToList();
+        }
+
+        /// <inheritdoc/>
+        public ICollection<TaskBase> GetOutgoing(User user)
+        {
+            var tasks = taskRepository.GetAll().Where(task => task.CreationAuthor == user);
+            return tasks.ToList();
         }
 
         /// <inheritdoc/>

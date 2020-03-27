@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+
 using AutoMapper;
 
+using ITUniversity.Application.Services;
+using ITUniversity.Runtime.Session;
 using ITUniversity.Tasks.Application.Services.Dto;
 using ITUniversity.Tasks.Entities;
 using ITUniversity.Tasks.Managers;
 using ITUniversity.Tasks.Repositories;
 
 namespace ITUniversity.Tasks.Application.Services.Imps
-{
-    /// <summary>
-    /// Сервис для работы с пользователями
-    /// </summary>
-    public class UserAppService : IUserAppService
+{/// <summary>
+ /// Сервис для работы с пользователями
+ /// </summary>
+    public class UserAppService : ApplicationService, IUserAppService
     {
         private readonly IUserRepository userRepository;
 
@@ -34,7 +35,9 @@ namespace ITUniversity.Tasks.Application.Services.Imps
             IUserRepository userRepository,
             IRoleRepository roleRepository,
             IUserManager userManager,
-            IMapper mapper)
+            IMapper mapper,
+            IAppSession session)
+            : base(session)
         {
             this.userRepository = userRepository;
             this.roleRepository = roleRepository;
@@ -51,15 +54,14 @@ namespace ITUniversity.Tasks.Application.Services.Imps
         }
 
         /// <inheritdoc/>
-        public UserDto Update(UpdateUserDto dto)
+        public UserDto Update(UpdateUserDto updateDto)
         {
-            var user = userRepository.Get(dto.Id);
-            user.Email = dto.Email;
-            if (dto.RoleId.HasValue)
-            {
-                var role = roleRepository.Get(dto.RoleId.Value);
-                user.Role = role;
-            }
+            var user = userRepository.Get(updateDto.Id);
+            user.Email = updateDto.Email;
+            user.Role = updateDto.RoleId.HasValue ? roleRepository.Get(updateDto.RoleId.Value) : null;
+
+            userRepository.Update(user);
+
             return mapper.Map<UserDto>(user);
         }
 
@@ -81,7 +83,6 @@ namespace ITUniversity.Tasks.Application.Services.Imps
         public UserDto Get(string login, string password)
         {
             var entity = userRepository.FirstOrDefault(e => e.Login == login && e.Password == password);
-            entity.Role = roleRepository.FirstOrDefault(entity.Role.Id);
             return mapper.Map<UserDto>(entity);
         }
 

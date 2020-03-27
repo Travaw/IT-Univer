@@ -24,8 +24,30 @@ namespace ITUniversity.Tasks.Application.Services.Dto
         public virtual DateTime CreationDate { get; set; }
 
         /// <summary>
+        /// Автор
+        /// </summary>
+        public UserDto CreationAuthor
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Статус
         /// </summary>
-        public virtual TasksStatus Status { get; set; }
+        public TasksStatus Status
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Исполнитель
+        /// </summary>
+        public UserDto Executor
+        {
+            get;
+            set;
+        }
     }
 }

@@ -7,6 +7,9 @@ namespace ITUniversity.Tasks.Managers
     /// <summary>
     /// Менеджер сущностей <see cref="TaskBase">
     /// </summary>
+    /// <summary>
+    /// Менеджер сущности <see cref="TaskBase"/>
+    /// </summary>
     public interface ITaskManager
     {
         /// <summary>
@@ -17,34 +20,47 @@ namespace ITUniversity.Tasks.Managers
         TaskBase Create(TaskBase task);
 
         /// <summary>
-        /// Создание задачи
+        /// 
         /// </summary>
         /// <param name="subject"></param>
         /// <returns></returns>
         TaskBase Create(string subject);
 
         /// <summary>
-        /// Поиск задачи
+        /// 
         /// </summary>
+        /// <param name="id"></param>
         /// <returns></returns>
         TaskBase Get(long id);
 
         /// <summary>
-        /// Вернуть все задачи
+        /// Получить все
         /// </summary>
         /// <returns></returns>
         ICollection<TaskBase> GetAll();
 
         /// <summary>
-        /// Изменение задачи
+        /// Получить входящие задачи
         /// </summary>
-        /// <returns></returns>
+        /// <param name="user">Пользователь</param>
+        ICollection<TaskBase> GetIncoming(User user);
+
+        /// <summary>
+        /// Получить исходящие задачи
+        /// </summary>
+        /// <param name="user">Пользователь</param>
+        ICollection<TaskBase> GetOutgoing(User user);
+
+        /// <summary>
+        /// Обновить
+        /// </summary>
+        /// <param name="task">Задача</param>
         TaskBase Update(TaskBase task);
 
         /// <summary>
-        /// Удаление задачи
+        /// Удалить
         /// </summary>
-        /// <returns></returns>
+        /// <param name="id">Идентификатор</param>
         void Delete(long id);
     }
 }

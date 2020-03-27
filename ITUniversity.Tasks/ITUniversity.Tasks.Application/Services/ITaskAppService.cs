@@ -37,6 +37,16 @@ namespace ITUniversity.Tasks.Application.Services
         /// Получить все задачи
         /// </summary>
         ICollection<TaskDto> GetAll();
+
+        /// <summary>
+        /// Получить мои входящие задачи
+        /// </summary>
+        ICollection<TaskDto> GetMyIncoming();
+
+        /// <summary>
+        /// Получить мои исходящие задачи
+        /// </summary>
+        ICollection<TaskDto> GetMyOutgoing();
     }
 
 }

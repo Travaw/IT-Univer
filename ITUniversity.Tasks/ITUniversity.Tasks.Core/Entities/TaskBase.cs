@@ -33,5 +33,15 @@ namespace ITUniversity.Tasks.Entities
         /// Статус
         /// </summary>
         public virtual TasksStatus Status { get; set; }
+
+        /// <summary>
+        /// Создатель задачи
+        /// </summary>
+        public virtual User CreationAuthor { get; set; }
+
+        /// <summary>
+        /// Исполнтель
+        /// </summary>
+        public virtual User Executor { get; set; }
     }
 }

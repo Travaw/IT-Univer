@@ -5,23 +5,47 @@ using ITUniversity.Tasks.Entities;
 
 namespace ITUniversity.Tasks.Web.Models
 {
+    /// <summary>
+    /// Модель редактирования задачи
+    /// </summary>
     public class TaskEditModel
     {
-        
-        public TaskEditModel()
+        /// <summary>
+        /// Идентификатор
+        /// </summary>
+        public long Id
         {
-
+            get;
+            set;
         }
-        
-        public long Id { get; set; }
 
-        
+        /// <summary>
+        /// Тема
+        /// </summary>
+        public string Subject
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Описание
         /// </summary>
-        [Required(ErrorMessage = "Заполните обязательное поле")]
         [DisplayName("Описание")]
-        public string Description { get; set; }
+        public string Description
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Исполнитель
+        /// </summary>
+        [DisplayName("Исполнитель")]
+        public int? Executor
+        {
+            get;
+            set;
+        }
     }
 }
