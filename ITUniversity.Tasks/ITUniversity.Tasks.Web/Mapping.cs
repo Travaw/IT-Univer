@@ -16,10 +16,9 @@ namespace ITUniversity.Tasks.Web
        {
             CreateMap<TaskCreateModel, TaskBase>();
             CreateMap<TaskBase, TaskEditModel>();
-            CreateMap<TaskCreateModel, TaskBase>();
-            CreateMap<TaskBase, TaskEditModel>();
             CreateMap<TaskEditModel, TaskBase>();
             CreateMap<RegisterModel, CreateUserDto>();
+            CreateMap<UserDto, UserEditModel>();
         }
     }
 }

@@ -7,11 +7,14 @@ using ITUniversity.Tasks.Application;
 using ITUniversity.Tasks.Application.Services;
 using ITUniversity.Tasks.Application.Services.Imps;
 using ITUniversity.Tasks.Managers;
+using ITUniversity.Tasks.Managers.Impls;
 using ITUniversity.Tasks.NHibernate;
 using ITUniversity.Tasks.NHibernate.Repositories;
 using ITUniversity.Tasks.Repositories;
 using ITUniversity.Tasks.Stores;
+
 using Microsoft.Extensions.DependencyInjection;
+
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Mapping.ByCode;
@@ -24,7 +27,9 @@ namespace ITUniversity.Tasks.Web
         {
             services.AddScoped<ITaskStore, TaskDbStore>();
             services.AddTransient<ITaskManager, TaskManager>();
+            services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<IUserAppService, UserAppService>();
+            services.AddTransient<IRoleAppService, RoleAppService>();
             return services;
         }
 
@@ -63,6 +68,7 @@ namespace ITUniversity.Tasks.Web
 
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
 
             return services;
         }

@@ -63,7 +63,8 @@ namespace ITUniversity.Tasks.Web.Controllers
                 return View(model);
             }
 
-            await Authenticate(model.Login);
+
+            await Authenticate(user);
             return RedirectToAction("Index", "Home");
         }
 
@@ -94,7 +95,7 @@ namespace ITUniversity.Tasks.Web.Controllers
                 var dto = mapper.Map<CreateUserDto>(model);
                 userAppService.Create(dto);
 
-                await Authenticate(model.Login);
+                await Authenticate(user);
 
                 return RedirectToAction("Index", "Home");
             }
@@ -116,16 +117,23 @@ namespace ITUniversity.Tasks.Web.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        private async Task Authenticate(string login)
+        private async Task Authenticate(UserDto user)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, login)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role != null ? user.Role.Name : string.Empty)
             };
 
             var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+        }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

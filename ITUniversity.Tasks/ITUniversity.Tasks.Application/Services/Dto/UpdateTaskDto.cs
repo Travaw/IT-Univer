@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ITUniversity.Tasks.Application.Services.Dto
 {
-    public class TaskUpdateDto
+    public class UpdateTaskDto
     {
         public virtual long Id { get; set; }
         /// <summary>

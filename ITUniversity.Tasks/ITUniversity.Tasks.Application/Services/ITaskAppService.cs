@@ -1,17 +1,42 @@
-﻿using ITUniversity.Application.Services;
+﻿using System.Collections.Generic;
+using ITUniversity.Application.Services;
 using ITUniversity.Tasks.Application.Services.Dto;
 
 namespace ITUniversity.Tasks.Application.Services
 {
+    /// <summary>
+    /// Сервис для работы с задачами
+    /// </summary>
     public interface ITaskAppService : IApplicationService
     {
-        TaskDto Add(TaskCreateDto task);
+        /// <summary>
+        /// Создать задачу
+        /// </summary>
+        /// <param name="dto"></param>
+        TaskDto Create(CreateTaskDto dto);
 
-        TaskDto Update(TaskUpdateDto task);
+        /// <summary>
+        /// Обновить задачу
+        /// </summary>
+        /// <param name="dto"></param>
+        TaskDto Update(UpdateTaskDto dto);
 
+        /// <summary>
+        /// Удалить задачу
+        /// </summary>
+        /// <param name="id">Идентификатор задачи</param>
         void Delete(long id);
 
+        /// <summary>
+        /// Получить задачу
+        /// </summary>
+        /// <param name="id">Идентификатор задачи</param>
         TaskDto Get(long id);
+
+        /// <summary>
+        /// Получить все задачи
+        /// </summary>
+        ICollection<TaskDto> GetAll();
     }
 
 }

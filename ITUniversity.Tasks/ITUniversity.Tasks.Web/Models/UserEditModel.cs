@@ -1,9 +1,13 @@
-﻿namespace ITUniversity.Tasks.Application.Services.Dto
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Threading.Tasks;
+using ITUniversity.Tasks.Application.Services.Dto;
+
+namespace ITUniversity.Tasks.Web.Models
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class UserDto
+    public class UserEditModel
     {
         /// <summary>
         /// Идентификатор
@@ -26,6 +30,7 @@
         /// <summary>
         /// Почта
         /// </summary>
+        [DisplayName("Электронная почта")]
         public string Email
         {
             get;
@@ -41,7 +46,8 @@
         /// <summary>
         /// Роль
         /// </summary>
-        public RoleDto Role
+        [DisplayName("Роль")]
+        public int? RoleId
         {
             get;
             set;

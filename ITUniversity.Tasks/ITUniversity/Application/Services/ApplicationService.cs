@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ITUniversity.Application.Services
+﻿namespace ITUniversity.Application.Services
 {
+    /// <summary>
+    /// Базовая реализация для всех сервисов приложения
+    /// </summary>
     public abstract class ApplicationService : IApplicationService
     {
         public static string[] CommonPostfixes = { "AppService", "ApplicationService" };

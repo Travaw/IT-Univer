@@ -6,9 +6,7 @@
 *@
 @{
     ViewData["Title"] = "Список пользователей";
-    var createUrl = Url.Action("Add", "Task");
 }
-
 <div class="card">
     <div class="card-header">
         Список пользователей
@@ -19,14 +17,20 @@
             {
                 <tr>
                     <td style="padding-left: 0px; padding-right: 0px;">
-                        <div class="card" id="user_@user.Id">
+                        <div class="card">
                             <div class="card-body">
                                 <div style="display: flex">
                                     <h5 style="display: flex; margin-bottom: 0px;">
                                         @user.Login
                                     </h5>
                                     <div style="width: 100%;">
-                                        <span class="material-icons" style="float: right; cursor: pointer; color: red;" onclick="user.block('@user.Id', this)">
+                                        <a class="material-icons" style="float: right;" href="@Url.Action("Edit", "User", new { id = user.Id })">
+                                            edit
+                                        </a>
+                                        <span class="material-icons"
+                                              style="float: right; cursor: pointer; color: red;"
+                                              onclick="user.block('@user.Id', this);"
+                                              title="Заблокировать пользователя">
                                             block
                                         </span>
                                     </div>
@@ -42,5 +46,5 @@
 
 @section scripts
 {
-   <script src="~/view-resources/user/scripts.js"></script>
+    <script src="~/view-resources/user/scripts.js"></script>
 }

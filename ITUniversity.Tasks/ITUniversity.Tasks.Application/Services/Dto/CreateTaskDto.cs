@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ITUniversity.Tasks.Application.Services.Dto
 {
-    public class TaskCreateDto
+    public class CreateTaskDto
     {
         /// <summary>
         /// Тема

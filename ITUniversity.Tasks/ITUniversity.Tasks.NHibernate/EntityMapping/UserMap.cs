@@ -43,6 +43,12 @@ namespace ITUniversity.Tasks.NHibernate.EntityMappings
                 x.Type(NHibernateUtil.Boolean);
             });
 
+            ManyToOne(property => property.Role, mapping =>
+            {
+                mapping.Column("RoleId");
+                mapping.Cascade(Cascade.All);
+            });
+
             Table(User.TableName);
         }
     }

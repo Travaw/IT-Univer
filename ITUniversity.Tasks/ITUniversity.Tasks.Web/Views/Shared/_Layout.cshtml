@@ -24,13 +24,16 @@
                         </li>
                         <li class="nav-item">
                             @*<a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="Index">Task</a>*@
-                            @Html.ActionLink("Задачи", "Index", "Task",null, htmlAttributes: new{ @class="nav-link text-dark"})
+                            @Html.ActionLink("Задачи", "Index", "Task", null, htmlAttributes: new { @class = "nav-link text-dark" })
                         </li>
                         <li class="nav-item">
-                            @Html.ActionLink("Пользователи", "Index", "User", null, htmlAttributes: new{ @class="nav-link text-dark"})
+                            @Html.ActionLink("Пользователи", "Index", "User", null, htmlAttributes: new { @class = "nav-link text-dark" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Выйти", "Logout", "Account", null, new { @class = "btn btn-outline-info" })
                         </li>
                     </ul>
-                    @Html.ActionLink("Выйти", "Logout", "Account", null, new { @class="btn btn-outline-info"})
+                    
                     
                 </div>
             </div>

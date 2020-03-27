@@ -6,6 +6,7 @@ using AutoMapper;
 using ITUniversity.Tasks.Entities;
 using ITUniversity.Tasks.Managers;
 using ITUniversity.Tasks.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ITUniversity.Tasks.Web.Controllers
@@ -22,6 +23,7 @@ namespace ITUniversity.Tasks.Web.Controllers
             this.mapper = mapper;
         }
 
+        [Authorize(Roles = "admin, user")]
         public IActionResult Index()
         {
             var tasks = taskManager.GetAll();

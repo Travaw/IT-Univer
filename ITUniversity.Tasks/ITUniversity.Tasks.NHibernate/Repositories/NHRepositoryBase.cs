@@ -1,8 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using System.Threading.Tasks;
 
 using ITUniversity.Domain.Entities;
 using ITUniversity.Domain.Repositories.Impls;
+
 using NHibernate;
 
 namespace ITUniversity.Tasks.NHibernate.Repositories
@@ -12,12 +13,12 @@ namespace ITUniversity.Tasks.NHibernate.Repositories
     /// </summary>
     /// <typeparam name="TEntity">Тип сущности</typeparam>
     /// <typeparam name="TPrimaryKey">Тип первичного ключа</typeparam>
-    public class NhRepositoryBase<TEntity, TPrimaryKey> : RepositoryBase<TEntity, TPrimaryKey>, IDisposable
+    public class NhRepositoryBase<TEntity, TPrimaryKey> : RepositoryBase<TEntity, TPrimaryKey>//, IDisposable
         where TEntity : class, IEntity<TPrimaryKey>
     {
         public virtual ISession Session { get; }
 
-        private readonly ITransaction transaction;
+        //private readonly ITransaction transaction;
 
         /// <summary>
         /// Инициализировать экземпляр <see cref="NhRepositoryBase{TEntity, TPrimaryKey}"/>
@@ -26,7 +27,7 @@ namespace ITUniversity.Tasks.NHibernate.Repositories
         public NhRepositoryBase(ISession session)
         {
             Session = session;
-            transaction = Session.BeginTransaction();
+            //transaction = Session.BeginTransaction();
         }
 
         /// <inheritdoc/>
@@ -42,14 +43,15 @@ namespace ITUniversity.Tasks.NHibernate.Repositories
         }
 
         /// <inheritdoc/>
+        public override async Task<TEntity> FirstOrDefaultAsync(TPrimaryKey id)
+        {
+            return await Session.GetAsync<TEntity>(id);
+        }
+
+        /// <inheritdoc/>
         public override TEntity Save(TEntity entity)
         {
-            using (transaction)
-            { 
-                Session.Save(entity);
-                transaction.Commit();
-            }
-            
+            Session.Save(entity);
             Session.Flush(); //Не правильно, только для тестов работы приложения
             return entity;
         }
@@ -57,12 +59,16 @@ namespace ITUniversity.Tasks.NHibernate.Repositories
         /// <inheritdoc/>
         public override TEntity Update(TEntity entity)
         {
-            using (transaction)
-            {
-                Session.Update(entity);
-                transaction.Commit();
-            }
+            Session.Update(entity);
             Session.Flush(); //Не правильно, только для тестов работы приложения
+            return entity;
+        }
+
+        /// <inheritdoc/>
+        public override async Task<TEntity> UpdateAsync(TEntity entity)
+        {
+            await Session.UpdateAsync(entity);
+            await Session.FlushAsync(); //Не правильно, только для тестов работы приложения
             return entity;
         }
 
@@ -70,17 +76,13 @@ namespace ITUniversity.Tasks.NHibernate.Repositories
         public override void Delete(TPrimaryKey id)
         {
             var entity = Session.Load<TEntity>(id);
-            using (transaction)
-            {
-                Session.Delete(entity);
-                transaction.Commit();
-            }
+            Session.Delete(entity);
             Session.Flush(); //Не правильно, только для тестов работы приложения
         }
 
-        public void Dispose()
-        {
-            //transaction.Commit();
-        }
+        //public void Dispose()
+        //{
+        //    //transaction.Commit();
+        //}
     }
 }
